@@ -14,9 +14,7 @@ public class GameManager : MonoBehaviour
             money = Mathf.Max(0, value);
 
             if (OnMoneyChanged != null)
-            {
                 OnMoneyChanged.Invoke(money);
-            }
         }
     }
 
@@ -24,10 +22,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        var ship = FindObjectOfType<Ship>();
-        ship.OnShipDestroyed += () => SceneManager.LoadScene("Gameover");
+        FindObjectOfType<Ship>().OnShipDestroyed += () => OnGameEnded();
     }
-    // Use this for initialization
+
     void Start ()
     {
         Money = 0;
@@ -35,9 +32,9 @@ public class GameManager : MonoBehaviour
 
     void OnGameEnded()
     {
-        var points = FindObjectOfType<AsteroidsWaveController>().CurrentWaveNumber * 10;
+        var points = FindObjectOfType<AsteroidWaveController>().CurrentWaveNumber * 10;
         GameState.SetCurrentResult(points);
 
-        SceneManager.LoadScene("Gameover");
+        SceneManager.LoadScene("gameover");
     }
 }

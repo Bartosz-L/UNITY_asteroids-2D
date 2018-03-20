@@ -48,7 +48,7 @@ public class ShipShield : MonoBehaviour, IUpgradable
 
     private void Awake()
     {
-        FindObjectOfType<AsteroidsWaveController>().OnWaveStarted += _ => Rebuild();
+        FindObjectOfType<AsteroidWaveController>().OnWaveStarted += _ => Rebuild();
     }
 
     private void Start()

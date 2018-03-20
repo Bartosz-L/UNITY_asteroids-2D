@@ -5,14 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Music : MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start () {
-
+    void Start()
+    {
         if (FindObjectsOfType<Music>().Length > 1)
-        {
             Destroy(gameObject);
-        }
+
         DontDestroyOnLoad(gameObject);
-	}
+    }
 }

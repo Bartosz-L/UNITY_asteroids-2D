@@ -11,4 +11,3 @@ public interface IUpgradable
     int UpgradeCost { get; }
     void Upgrade();
 }
-

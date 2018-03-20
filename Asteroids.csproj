@@ -294,13 +294,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Asteroid.cs" />
     <Compile Include="Assets\Scripts\AsteroidSpawner.cs" />
-    <Compile Include="Assets\Scripts\AsteroidsWaveController.cs" />
+    <Compile Include="Assets\Scripts\AsteroidWaveController.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\GameoverUI.cs" />
+    <Compile Include="Assets\Scripts\GameoverUserInterface.cs" />
     <Compile Include="Assets\Scripts\GameState.cs" />
-    <Compile Include="Assets\Scripts\GameUI.cs" />
+    <Compile Include="Assets\Scripts\GameUserInterface.cs" />
     <Compile Include="Assets\Scripts\IUpgradable.cs" />
     <Compile Include="Assets\Scripts\LifetimeObject.cs" />
     <Compile Include="Assets\Scripts\Music.cs" />

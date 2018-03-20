@@ -13,12 +13,12 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField]
     string Text;
 
-    void Awake()
+	void Awake ()
     {
         GameManager = FindObjectOfType<GameManager>();
         Button = GetComponent<Button>();
 
-        var waveController = FindObjectOfType<AsteroidsWaveController>();
+        var waveController = FindObjectOfType<AsteroidWaveController>();
 
         waveController.OnWaveStarted += _ => gameObject.SetActive(false);
         waveController.OnWaveEnded += _ => gameObject.SetActive(true);

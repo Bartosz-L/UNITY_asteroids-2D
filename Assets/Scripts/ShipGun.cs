@@ -23,13 +23,6 @@ public class ShipGun : MonoBehaviour, IUpgradable
 
     private AudioSource AudioSource;
 
-    private void Start()
-    {
-        AudioSource = GetComponent<AudioSource>();
-        AudioSource.clip = FireClip;
-    }
-
-
     #region IUpgradable
 
     public int MaxLevel
@@ -48,34 +41,39 @@ public class ShipGun : MonoBehaviour, IUpgradable
     {
         CurrentLevel += 1;
     }
+
     #endregion
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (!Input.GetMouseButton(0)) return;
-        if (!CanShootBullet()) return;
+        AudioSource = GetComponent<AudioSource>();
+        AudioSource.clip = FireClip;
+    }
+
+    void Update ()
+    {
+        if (!Input.GetMouseButton(0))
+            return;
+
+        if (!CanShootBullet())
+            return;
 
         ShootBullets();
-
-        // update time of last shoot
         LastShootTime = Time.timeSinceLevelLoad;
-
     }
 
     private void ShootBullets()
     {
-        if (BulletType.cannonType == CannonType.Single)
+        if(BulletType.CannonType == CannonType.Single)
         {
             ShootBullet(Vector3.zero, Vector3.zero);
         }
-
-        else if (BulletType.cannonType == CannonType.Double)
+        else if (BulletType.CannonType == CannonType.Double)
         {
             ShootBullet(Vector3.left * 0.1f, Vector3.forward * 5f);
             ShootBullet(Vector3.right * 0.1f, Vector3.back * 5f);
         }
-        else if (BulletType.cannonType == CannonType.Triple)
+        else if (BulletType.CannonType == CannonType.Triple)
         {
             ShootBullet(Vector3.left * 0.1f, Vector3.forward * 15f);
             ShootBullet(Vector3.zero, Vector3.zero);
@@ -87,21 +85,16 @@ public class ShipGun : MonoBehaviour, IUpgradable
 
     private void ShootBullet(Vector3 position, Vector3 rotation)
     {
-        // instantiate bullet at given position
-
         var bullet = Instantiate(
-                BulletPrefab,
-                transform.position + position + Vector3.up * 0.5f,
-                Quaternion.Euler(rotation));
+            BulletPrefab,
+            transform.position + position + Vector3.up * 0.5f,
+            Quaternion.Euler(rotation));
 
-        // configure bullet using configure method from Bullet class
         bullet.GetComponent<Bullet>().Configure(BulletType);
-    
     }
 
     private bool CanShootBullet()
     {
-        return (Time.timeSinceLevelLoad - LastShootTime > BulletType.ShootingDuration);
+        return (Time.timeSinceLevelLoad - LastShootTime >= BulletType.ShootingDuration);
     }
-
 }

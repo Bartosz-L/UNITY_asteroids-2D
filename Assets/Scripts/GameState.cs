@@ -7,17 +7,12 @@ public static class GameState
     private const string LastResult = "last_result";
     private const string Record = "record";
 
-    public static void SetCurrentResult(int points)
+	public static void SetCurrentResult(int points)
     {
         PlayerPrefs.SetInt(LastResult, points);
 
-        var record = GetRecord();
-
         if (points > GetRecord())
-        {
             PlayerPrefs.SetInt(Record, points);
-        }
-
     }
 
     public static int GetLastResult()

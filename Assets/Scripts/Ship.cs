@@ -11,11 +11,10 @@ public class Ship : MonoBehaviour
     {
         var asteroid = collision.gameObject.GetComponent<Asteroid>();
 
-        if (asteroid == null) return;
+        if (asteroid == null)
+            return;
 
         if (OnShipDestroyed != null)
-        {
             OnShipDestroyed.Invoke();
-        }
     }
 }
